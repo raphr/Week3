@@ -1,45 +1,37 @@
 float x, y;
 float ballSize = 40;
-float speed = 5;
+float XSpeed = 5, YSpeed = 5;
+float gravity = 0.5;
+float braking = 0.09;
 boolean movingUp=false;
 boolean movingLeft=false;
 
 void setup() {
-  size (600, 400); 
+  size (600, 605); 
   y = ballSize * 1.5;
   x = width/2;
-  fill(208);
 }
 
 void draw() {
 
-//  background (#9531C1); 
-  fill(40, 150, 150) ;
+  background (#9531C1); 
+  fill(200, 100, 10) ;
   ellipse(x, y, 100, 100);
+  y = y + YSpeed;
+  x = x + XSpeed;
+  YSpeed = YSpeed + gravity;
 
 
-  if (y + ballSize/2 >= height) {
-    movingUp=true;
-  } else if (y - ballSize/2 <= 0) {
-    movingUp = false;
+  if (y + ballSize/2 > height) {
+    YSpeed *= -(1-braking);
+    y = height - ballSize/2;
   }
-
-  if (movingUp) {
-    y = y - speed;
-  } else {
-    y = y + speed;
-  }
-  
-   if (x + ballSize/2 >= width) {
-    movingLeft=true;
+  if (x + ballSize/2 >= width) {
+    XSpeed *= -(1 - braking);
+    x = width - ballSize/2;
   } else if (x - ballSize/2 <= 0) {
-    movingLeft = false;
-  }
-
-  if (movingLeft) {
-    x = x - speed;
-  } else {
-    x = x + speed;
+    XSpeed *= -(1- braking);
+    x = ballSize/2;
   }
 }
 
