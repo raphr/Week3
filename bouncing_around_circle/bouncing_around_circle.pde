@@ -3,8 +3,7 @@ float ballSize = 40;
 float XSpeed = 5, YSpeed = 5;
 float gravity = 0.5;
 float braking = 0.09;
-boolean movingUp=false;
-boolean movingLeft=false;
+
 
 void setup() {
   size (600, 605); 
